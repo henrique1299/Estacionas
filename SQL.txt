@@ -1,0 +1,71 @@
+create table Estacionamentos (
+id serial PRIMARY KEY,
+nome varchar(50),
+rua varchar(50),
+numero varchar(3),
+cidade varchar(50),
+bairro varchar(30),
+cep varchar(10),
+telefone varchar(15)
+);
+
+create table Vagas(
+id serial PRIMARY KEY,
+idEstacionamento int not null,
+FOREIGN KEY (idEstacionamento) REFERENCES Estacionamentos(id)
+);
+
+create table Clientes(
+id serial Primary Key,
+nome varchar(70),
+documento varchar(20)
+);
+
+create table Mensalistas(
+id serial Primary Key,
+idCliente int not null,
+FOREIGN KEY (idCliente) REFERENCES Clientes(id)
+);
+
+create table Aluguel(
+id serial PRIMARY KEY,
+idMensalista int not null,
+idVaga int not null,
+FOREIGN KEY (idMensalista) REFERENCES Mensalistas(id),
+FOREIGN KEY (idVaga) REFERENCES Vagas(id)
+);
+
+create table Pagamentos (
+id serial Primary Key,
+valor numeric(10,2),
+idCliente int not null,
+FOREIGN KEY (idCliente) REFERENCES Clientes(id)
+);
+
+create table PagPorVaga(
+id serial Primary Key,
+idPagamento int not null,
+idVaga int not null,
+FOREIGN KEY (idPagamento) REFERENCES Pagamentos(id),
+FOREIGN KEY (idVaga) REFERENCES Vagas(id)
+);
+
+create table Reservas(
+id serial Primary Key,
+idCliente int not null,
+idVaga int not null,
+FOREIGN KEY (idCliente) REFERENCES Clientes(id),
+FOREIGN KEY (idVaga) REFERENCES Vagas(id)
+);
+
+create table VagasOculpadas(
+id serial Primary Key,
+idCliente int not null,
+idVaga int not null,
+carro varchar(10),
+dataHora timestamp,
+FOREIGN KEY (idCliente) REFERENCES Clientes(id),
+FOREIGN KEY (idVaga) REFERENCES Vagas(id)
+);
+
+
