@@ -17,14 +17,5 @@ namespace Estacionas.Models
 
             return conn;
         }
-
-        public void Insert()
-        {
-            using (var cmd = new NpgsqlCommand("INSERT INTO Clientes (nome, documento) VALUES (@n, @d)", conn))
-            {
-                cmd.Parameters.AddWithValue("n", "Hello world");
-                cmd.ExecuteNonQueryAsync();
-            }
-        }
     }
 }

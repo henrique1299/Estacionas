@@ -11,5 +11,6 @@ namespace Estacionas.Data
         {
         }
         public DbSet<Estacionas.Models.Clientes>? Clientes { get; set; }
+        public DbSet<Estacionas.Models.Estacionamentos>? Estacionamentos { get; set; }
     }
 }

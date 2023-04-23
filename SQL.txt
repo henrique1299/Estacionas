@@ -6,7 +6,9 @@ numero varchar(3),
 cidade varchar(50),
 bairro varchar(30),
 cep varchar(10),
-telefone varchar(15)
+telefone varchar(15),
+latitude decimal,
+longitude decimal
 );
 
 create table Vagas(
@@ -69,3 +71,5 @@ FOREIGN KEY (idVaga) REFERENCES Vagas(id)
 );
 
 
+-23.95752525,
+                            -46.32776642

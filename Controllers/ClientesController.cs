@@ -54,6 +54,7 @@ namespace Estacionas.Controllers
                     cmd.ExecuteNonQuery();
                 }
                 transaction.Commit();
+                conn.Close();
                 return RedirectToAction(nameof(Index));
             }
             catch
