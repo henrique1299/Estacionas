@@ -65,17 +65,18 @@ namespace Estacionas.Controllers
             }
             conn.Close();
 
-            string result = await view.CalculateDistance(estacionamentos, "09210-380");
+            string result = await view.CalculateDistance(estacionamentos, "09210-580");
             int ini = result.IndexOf("\"results\"") + 11;
             int fim = result.IndexOf("]", ini);
             result = result.Substring(ini, fim - ini);
 
-            int aux;
+            int aux, i = 0;
             ini = 0;
             while ((ini = result.IndexOf("travelDistance", ini+1)) > 0)
             {
                 aux = result.IndexOf("travelDistance", ini) + "travelDistance".Length + 2;
-                estacionamentos[0].Distancia = Convert.ToDecimal(result.Substring(aux, 6)) / 1000; ;
+                estacionamentos[i].Distancia = Convert.ToDecimal(result.Substring(aux, 6)) / 1000;
+                i++;
             }
 
             estacionamentos = estacionamentos.OrderBy(o => o.Distancia).ToList();
